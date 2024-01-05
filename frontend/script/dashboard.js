@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
   }
 });
 
-const budgetInput = document.getElementById("d-budget");
+const budgetInput = document.getElementById("income-budget");
 const chooseExpense = document.getElementById("choose-expense");
 const expenseAmt = document.getElementById("expense-amout");
 const expenseSubmitBtn = document.getElementById("expense-submit-form");
