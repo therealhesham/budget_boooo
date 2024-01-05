@@ -103,20 +103,7 @@ const registerlink = () => {
                 autocomplete="off"
                  required
             />
-            <input
-                type="string"
-                name="bank"
-                placeholder="bank"
-                autocomplete="off"
-                 required
-            />
-            <input
-                type="string"
-                name="occupation"
-                placeholder="occupation"
-                autocomplete="off"
-                 required
-            />
+            
             <input
                 type="password"
                 name="password"
@@ -356,22 +343,3 @@ const registerFormSubmit = async (event) => {
 
 // ---------------------------------------------------------------------------
 
-// // login via google
-// const googleLogin = async () => {
-//   try {
-//     let response = await fetch(
-//       "https://periwinkle-catfish-cuff.cyclic.app/user/auth/google",
-//       { mode: "no-cors" }
-//     );
-//     let result = await response.json();
-//     console.log(result);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-//
-
-// let register = document.getElementById("registerForm")
-// register.addEventListener('click', () => {
-//     console.log("hello");
-// })
