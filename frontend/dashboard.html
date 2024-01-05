@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="shortcut icon" href="images/income.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style/dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet" />
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js
+    "></script>
+    <!-- <link rel="stylesheet" href="./style/style.css"> -->
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- **************************************** NAV - BAR **************************************** -->
+
+    <nav class="navbar">
+        <a href="index.html"><img src="images/BudgetBud." alt="Budget_tracker"></a>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html">Home</a></li>
+            <li class="nav-item"><a onclick="checkValidation()" id="dash-id">DashBoard</a></li>
+            <li class="nav-item"><a onclick="toggleModal()" id="log" class="login-btn" href="login.html">Login</a></li>
+        </ul>
+
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+    </nav>
+    <div id="modal">
+        <button id="logout">Logout</button>
+    </div>
+
+    <div class="logout-overlay" onclick="removeOverlayLg()"></div>
+
+    <hr>
+
+    <!-- **************************************** BODY **************************************** -->
+
+    <div class="welcome-header">Welcome to Budget_booooo! We're glad you are here.</div>
+
+    <div class="dash-container">
+        <div class="left-cont">
+            <div class="expense-input budget-box">
+                <form id="budget-submit-form">
+                    <label for="choose-income">Add income</label>
+                    <select class="budget-input-box" id="choose-income" required>
+                        <option value="">Budget</option>
+                        <option value="Primary job">Primary job</option>
+                        <option value="Part-time job">Part-time job</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div id="income-otherName-wrapper"></div>
+                    <label for="income-budget">Set Budget</label>
+                    <input type="number" id="income-budget" placeholder="0.00" class="budget-input-box">
+                    <button id="add-budget" type="submit" class="add-budget-button">Add Income</button>
+                </form>
+                
+                
+            </div>
+            <div class="expense-input budget-box">
+                <form id="expense-submit-form">
+                    <label for="choose-expense">Add Expenses</label>
+                    <select class="budget-input-box" id="choose-expense" required>
+                        <option value="">Expenses</option>
+                        <option value="gas bill">Electricity bill</option>
+                        <option value="water bill">Water bill</option>
+                        <option value="Internet bill">Internet bill</option>
+                        <option value="Fuel bill">Fuel bill</option>
+                        <option value="Restaurant bill">Restaurant bill</option>
+                        <option value="other">other</option>
+                    </select>
+                    <div id="expense-otherName-wrapper"></div>
+                    <label for="expense-amout">Amount</label><input type="number" id="expense-amout" placeholder="0.00"
+                        class="budget-input-box" required>
+                    <button id="add-expense" type="submit" class="add-budget-button">Add Expense</button>
+                </form>
+            </div>
+        </div>
+        <div class="right-cont">
+            <div class="display-budget-plan">
+                <div class="budget-display">
+                    <h2 class="budget-title">BUDGET</h2>
+                    <div class="display-image">
+                        <img src="./images/data-report-svgrepo-com.png" alt="" class="budget-img">
+                    </div>
+                    <p class="budget-amount green"><span id="budget-amount-input">0</span>EGP</p>
+                </div>
+                <div class="budget-display">
+                    <h2 class="budget-title">EXPENSES</h2>
+                    <div class="display-image">
+                        <img src="./images/credit-card-svgrepo-com.png" alt="" class="budget-img">
+                    </div>
+                    <p class="budget-amount pink"><span id="expense-amount-input">0</span>EGP</p>
+                </div>
+                <div class="budget-display">
+                    <h2 class="budget-title">BALANCE</h2>
+                    <div class="display-image">
+                        <img src="./images/wallet-svgrepo-com.png" alt="" class="budget-img">
+                    </div>
+                    <p class="budget-amount red"><span id="balance-amount-input">0</span>EGP</p>
+                </div>
+            </div>
+
+
+            <div class="recent-income">
+                <table class="income-history">
+                    <thead>
+                        <tr>
+                            <th>Income Title</th>
+                            <th>Income Value</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-income-history">
+                        <tr>
+                            <td colspan="3" style="text-align: center; font-size: 2rem;">No Recent Transactions</td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="recent-expenses">
+                <table class="expenses-history">
+                    <thead>
+                        <tr>
+                            <th>Expense Title</th>
+                            <th>Expense Value</th>
+                            <th>Delete</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-expenses-history">
+                        <tr>
+                            <td colspan="3" style="text-align: center; font-size: 2rem;">No Recent Transactions</td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="expense-update-container">
+        <form id="popupForm">
+            <input type="text" class="expense-edit-input" id="editName" />
+            <input type="number" class="expense-edit-input" id="editAmount" />
+            <input type="submit" value="SAVE" />
+            <input type="button" value="CANCEL" id="close-popup">
+        </form>
+    </div>
+
+    <div id="income-update-container">
+        <form id="popupForm">
+            <input type="text" class="income-edit-input" id="editName" />
+            <input type="number" class="income-edit-input" id="editAmount" />
+            <input type="submit" value="SAVE" />
+            <input type="button" value="CANCEL" id="close-popup">
+        </form>
+    </div>
+
+    <div id="income-update-container">
+        <form id="popupForm">
+            <input type="text" class="income-edit-input" id="editName" />
+            <input type="number" class="income-edit-input" id="editAmount" />
+            <input type="submit" value="SAVE" />
+            <input type="button" value="CANCEL" id="close-popup">
+        </form>
+    </div>
+    <!-- **************************************** NAV - BAR **************************************** -->
+
+    
+
+    <div id="over-lay-dash"></div>
+
+    <div id="dash-loading-container">
+        <div class="dash-loader"></div>
+    </div>
+
+</body>
+
+
+<script src="script/dashboard.js"></script>
+
+
+
+</html>

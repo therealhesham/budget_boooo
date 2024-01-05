@@ -1,0 +1,528 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* To Remove the arrows in input type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+/* Popup Form Styles */
+#popupForm {
+    width: 30%;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 35;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+#popupForm > input {
+    font-size: 1rem;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    margin: 0px 0px 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ced4da;
+}
+
+/* Loader Styles */
+#dash-loading-container {
+    display: none;
+}
+
+#over-lay-dash {
+    z-index: 30;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: none;
+}
+
+.dash-loader {
+    z-index: 40;
+    border: 5px solid #f8f9fa;
+    border-radius: 50%;
+    border-top: 5px solid #007bff;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    animation: spin 0.5s linear infinite;
+    background: linear-gradient(75% 75% 75% 75% #007bff, #007bff 75%);
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Navbar Styles */
+:root {
+    --main-color: #007bff;
+    --body-color: #f8f9fa;
+    --text-color: #495057;
+    --font-size: 1.2rem;
+    --font-weight: 700;
+}
+
+.navbar {
+    position: fixed;
+    margin-bottom: 50px;
+    padding: 0px 60px;
+    overflow: hidden;
+    width: 100%;
+    height: 4rem;
+    margin: auto;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.navbar img {
+    width: 185px;
+    height: 57px;
+    object-fit: cover;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden !important;
+}
+
+.navbar ul > li {
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    list-style: none;
+    margin-left: 2rem;
+}
+
+.navbar ul a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: border-bottom 0.3s ease-in-out;
+}
+
+.navbar ul a:hover {
+    border-bottom: 2px solid var(--main-color);
+}
+
+.hamburger {
+    margin-right: 6px;
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px;
+    margin-right: 20%;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--text-color);
+    border-radius: 100px;
+}
+
+/* ... (Other styles remain the same) */
+/* ... (Previous styles remain the same) */
+
+/* Welcome Header Styles */
+.welcome-header {
+    text-align: center;
+    background-color: #3498db; /* Updated background color */
+    padding: 20px;
+    color: #ffffff; /* Updated text color */
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem; /* Updated font size */
+    margin-top: 79px;
+}
+
+/* Dashboard Container Styles */
+.dash-container {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.left-cont {
+    width: 38%;
+    font-size: 1.3rem;
+}
+
+.budget-box {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid #3498db; /* Updated border color */
+    padding: 10px 15px;
+    padding-bottom: 18px;
+    border-radius: 8px; /* Updated border-radius */
+    margin-bottom: 4rem;
+}
+
+.budget-input {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 1px solid #e74c3c; /* Updated border color */
+    padding: 10px 15px;
+    padding-bottom: 18px;
+    margin-bottom: 4rem;
+    border-radius: 8px; /* Updated border-radius */
+}
+
+.budget-input > div {
+    width: 100%;
+}
+
+#add-budget,
+#expense-amout {
+    display: block;
+}
+
+.budget-input-box {
+    font-size: 1rem;
+    padding: 10px;
+    display: block;
+    width: 100%;
+    margin: 0px 0px 9px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ced4da;
+}
+
+.add-budget-button {
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #e74c3c; /* Updated border color */
+    color: #e74c3c; /* Updated text color */
+    cursor: pointer;
+    background-color: #fff; /* Updated background color */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#add-budget:hover {
+    color: #fff; /* Updated text color on hover */
+    background-color: #e74c3c; /* Updated background color on hover */
+}
+
+#add-budget {
+    margin-top: 1rem;
+}
+
+#add-expense {
+    border-color: #3498db; /* Updated border color */
+    color: #3498db; /* Updated text color */
+    margin-top: 0.5rem;
+}
+
+#add-expense:hover {
+    color: #fff; /* Updated text color on hover */
+    background-color: #3498db; /* Updated background color on hover */
+}
+
+.right-cont {
+    width: 60%;
+    margin-left: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Updated box shadow */
+    padding: 20px; /* Updated padding */
+}
+
+.display-budget-plan {
+    display: flex;
+    justify-content: space-around;
+}
+
+.display-budget-plan > .budget-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-budget-plan > .budget-display .budget-img {
+    width: 60px;
+    margin: 0.7rem;
+    margin-bottom: 5px;
+}
+
+.budget-amount {
+    font-size: 2rem;
+}
+
+.display-budget-plan > .budget-display > .green {
+    color: #27ae60; /* Updated color */
+}
+
+.display-budget-plan > .budget-display > .pink {
+    color: #e74c3c; /* Updated color */
+}
+
+.display-budget-plan > .budget-display > .red {
+    color: #c0392b; /* Updated color */
+}
+
+/* ... (Other styles remain the same) */
+/* ... (Previous styles remain the same) */
+
+/* Recent Expenses Styles */
+.recent-expenses {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px; /* Updated border-radius */
+    width: 90%;
+    margin: auto;
+    margin-top: 2.15rem;
+    overflow: hidden;
+}
+
+.expenses-history {
+    border-collapse: collapse;
+    font-size: 1rem;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.expenses-history > thead > tr > th {
+    background-color: #3498db; /* Updated background color */
+    text-align: left;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif; /* Updated font family */
+}
+
+.expenses-history > thead > tr > th,
+.expenses-history > tbody > tr > td {
+    padding: 11px;
+}
+
+.expenses-history tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.expenses-history > tbody > tr:last-of-type {
+    border-bottom: 2px solid #3498db; /* Updated border color */
+}
+
+.expenses-history > tbody > tr > td,
+.expenses-history > thead > tr > th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.expenses-history > thead > tr > th:nth-child(1) {
+    width: 30%;
+}
+
+.expenses-history > thead > tr > th:nth-child(2) {
+    width: 20%;
+}
+
+.expenses-history > thead > tr > th:nth-child(3) {
+    width: 15%;
+}
+
+.expenses-history > thead > tr > th:nth-child(4) {
+    width: 15%;
+}
+
+.expenses-history > tbody > tr > td > img {
+    width: 28px;
+    opacity: 0.65;
+}
+
+.expenses-history > tbody > tr > td > img:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.recent-income {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px; /* Updated border-radius */
+    width: 90%;
+    margin: auto;
+    margin-top: 2.15rem;
+    overflow: hidden;
+}
+
+.income-history {
+    border-collapse: collapse;
+    font-size: 1rem;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.income-history > thead > tr > th {
+    background-color: #3498db; /* Updated background color */
+    text-align: left;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif; /* Updated font family */
+}
+
+.income-history > thead > tr > th,
+.income-history > tbody > tr > td {
+    padding: 11px;
+}
+
+.income-history tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.income-history > tbody > tr:last-of-type {
+    border-bottom: 2px solid #3498db; /* Updated border color */
+}
+
+.income-history > tbody > tr > td,
+.income-history > thead > tr > th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.income-history > thead > tr > th:nth-child(1) {
+    width: 30%;
+}
+
+.income-history > thead > tr > th:nth-child(2) {
+    width: 20%;
+}
+
+.income-history > thead > tr > th:nth-child(3) {
+    width: 15%;
+}
+
+.income-history > thead > tr > th:nth-child(4) {
+    width: 15%;
+}
+
+.income-history > tbody > tr > td > img {
+    width: 28px;
+    opacity: 0.65;
+}
+
+.income-history > tbody > tr > td > img:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.data-null {
+    text-align: center;
+    font-size: 1.8rem;
+    column-span: 3;
+}
+
+/* Media Queries (Previous media queries remain the same) */
+@media (min-width: 768px) and (max-width: 1024px) {}
+
+/* ... (Other media queries remain the same) */
+
+@media (max-width: 550px) {
+    .left-cont {
+        flex-direction: column;
+    }
+
+    .left-cont > .budget-box {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .navbar img {
+        width: 170px;
+    }
+}
+
+@media (max-width:500px) {
+    .display-budget-plan {
+        font-size: 0.8rem;
+    }
+
+    .budget-display > .green,
+    .budget-display > .red,
+    .budget-display > .pink,
+    .data-null {
+        font-size: 1.5rem;
+    }
+
+    .expenses-history {
+        font-size: 0.9rem;
+    }
+
+    .display-budget-plan > .budget-display .budget-img {
+        width: 54px;
+    }
+
+    .expenses-history > tbody > tr > td > img {
+        width: 24px;
+    }
+
+
+
+
+
+    .income-history {
+        font-size: 0.9rem;
+    }
+
+    .display-budget-plan > .budget-display .budget-img {
+        width: 54px;
+    }
+
+    .income-history > tbody > tr > td > img {
+        width: 24px;
+    }
+
+    .welcome-header {
+        font-size: 1rem;
+    }
+
+    #popupForm {
+        width: 58%;
+    }
+}
